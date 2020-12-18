@@ -1,60 +1,68 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css'
+import Jumbotron from 'react-bootstrap/Jumbotron'
 import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Jumbotron from 'react-bootstrap/Jumbotron'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import ListGroup from 'react-bootstrap/ListGroup'
-import List from './components/List'
-
-
-
-
+import React, {useState, useEffect} from 'react'
+import Editor from './components/Editor'
+import Allnotes from './components/List'
+import {getNotes} from './helpers/notes'
 
 
 function App() {
+  const [selectedNote, setSelectedNote] = useState(undefined)
+  const [notes, setNotes] = useState([])
+ 
+  useEffect(() => {
+    const notes = getNotes()
+    setNotes(notes)
+  }, [setNotes])
+
+  const refreshList = () => {
+    setSelectedNote(undefined)
+    const notes = getNotes()
+    setNotes([...notes])
+  }
+  const createList = () => {
+    setSelectedNote(undefined)
+  }
   return (
-  <Container>
-<Jumbotron>
-  NOTES
-  </Jumbotron>
-  <Row >
-    
-    <Col style ={{backgroundColor:'#2a2e43'}} xs={12} md={4}> 
-     <Button variant="info"style={{ width: '22rem',marginBottom :40,marginTop:15}}>New note</Button> 
-  
+    <Container>
+      <Jumbotron className="main">
+       <h1>Notes</h1>
+      </Jumbotron>
 
-     <List/>
+      
 
+     <Row>
+        <Col className="Notelist" sm={12} md={4}>
+          <div>
+            <Button variant="success" size="sm" className="mb-4 " bloc onClick={createList}>
+              Add New Note
+            </Button>
 
-
-    </Col>
-   <Col style ={{backgroundColor:'#00c6ff'}} xs={12} md={8}>  
-   <Form>
-  <Form.Group controlId="formBasicEmail">
-    <Form.Label>Title</Form.Label>
-    <Form.Control type="email" placeholder=" " />
-    <Form.Text className="text-muted">
-     
-    </Form.Text>
-  </Form.Group>
-
-  <Form.Group controlId="formBasicNote">
-    <Form.Label>Note</Form.Label>
-   <textarea class="form-control" id="inputMessage" rows="5" required></textarea>
-  </Form.Group>
-  
-  <Button variant="primary" type="save">
-    Save
-  </Button>
-  <Button variant="danger">Delete</Button> 
-</Form></Col>
-  </Row>
-  
-</Container>
-  );
+          </div>
+          <div className="mb-4">
+            <Allnotes notes={notes} selectedNote={selectedNote} setSelectedNote={setSelectedNote} />
+            <Button variant="info" size="sm" className="mb-4 " bloc onClick={('')}>
+              Archive
+				</Button>
+            
+          </div>
+        </Col>
+        <Col className="changeNote" sm={12} md={8}>
+          Title
+          <Editor
+            refreshList={refreshList}
+            selectedNote={selectedNote}
+           
+          />
+        </Col>
+      </Row>
+    </Container>
+  )
 }
 
-export default App;
+export default App

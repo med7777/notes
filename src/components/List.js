@@ -1,19 +1,32 @@
 import React from 'react'
-import ListGroup from 'react-bootstrap/ListGroup'
-
-import {notes} from '../helper/notes';
+import {ListGroup} from 'react-bootstrap'
 
 
-export default function List(){
 
-	return(
+export default function Allnotes({selectedNote, setSelectedNote, notes, showArchive, setShowArchive,
+  isArchived }) {
+ 
 
-<ListGroup>
+  const onSelectNote = (note) => {
+    setSelectedNote(note)
+  }
 
-{notes.map((note,index)=><ListGroup.Item className="list-group-item list-group-item-action" active={index===0} as= "li">{note.title}</ListGroup.Item>)}
-
-</ListGroup>
-		)
+  return (
+    <>
+      <ListGroup as="ul">
+        {notes.map((note, index) => (
+          <ListGroup.Item
+            variant="info"
+            active={selectedNote ? note.id === selectedNote.id : false}
+            onClick={() => onSelectNote(note)}
+            
+            as="li"
+          >
+            {note.title}
+            
+          </ListGroup.Item>
+        ))}
+      </ListGroup>
+    </>
+  )
 }
-
-

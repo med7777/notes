@@ -1,0 +1,66 @@
+body {
+    background-color:#000000;}
+    h1{text-align: center; color:#ffffff;}
+    .main{
+      background-color: #2a2e41;
+      margin-top:10px;
+       box-shadow:  7px 7px 7px 7px white;
+    }
+.Notelist {
+ border-radius: 5px 0 0 5px;
+  background-color:#2a2e41;
+  box-shadow:  7px 7px 7px 7px white;
+}
+ .NB{color: #FFFFFF; background-color: #00c6ff;}
+
+li {
+ 
+  box-shadow:  5px 5px 5px 5px white;
+}
+.list-group-item-info {
+    color: #000000;
+    background-color: #00ffff;
+    margin-top: 15px;
+    width: 90%;
+}
+.noteList {
+  display: flex;
+  justify-content: space-around;
+}
+
+.flex-container {
+
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+.btn-success
+ {
+    margin-top: 1rem!important;
+align-items: center;
+}
+.btn-info {
+    margin-top: 5rem!important;
+align-items: center;
+}
+.btn-success ,.btn-info {width:320px;
+}
+
+.saveButton {
+  width: 40%;
+  margin: 20px;
+}
+.deleteButton {
+  width: 40%;
+  margin: 20px;
+}
+
+
+.changeNote{
+  box-sizing: border-box;
+ border-radius: 0px 5px 5px 0px;
+ box-shadow:  7px 7px 7px 7px white;
+  background-color: #2a2e41;
+  color:#ffff;
+
+}
